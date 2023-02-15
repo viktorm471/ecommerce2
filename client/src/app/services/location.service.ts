@@ -1,0 +1,30 @@
+import { Injectable } from '@angular/core';
+import { LatLngExpression } from 'leaflet';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LocationService {
+
+  constructor() { }
+  getCurrentLocation(): Observable<LatLngExpression>{
+
+
+    return new Observable((observer) => {
+      if(!navigator.geolocation) return;
+
+      return navigator.geolocation.getCurrentPosition(
+        (pos)=>{
+          observer.next({
+            lat: pos.coords.latitude,
+            lng: pos.coords.longitude
+          })
+        },
+        (err)=>{
+          observer.error(err)
+        }
+      );
+    });
+  }
+}

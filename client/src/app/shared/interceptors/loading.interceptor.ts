@@ -9,9 +9,12 @@ import {
 import { Observable, tap } from 'rxjs';
 import { LoadingService } from 'src/app/services/loading.service';
 var pendingRequest=0;
+
+
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
 
+  // You Must add the interceptor in app.component.ts
   constructor( private loadingService:LoadingService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {

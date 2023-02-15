@@ -6,6 +6,9 @@ import { sample_foods } from './data';
 
 import foodRouter from './routes/food.route';
 import userRouter from './routes/user.route';
+import orderRouter from './routes/order.route';
+
+import { auth } from './middlewares/auth.mid'
 import { dbConnect } from './configs/database.config';
 dbConnect();
 
@@ -21,6 +24,7 @@ app.use(cors({
 
 app.use("/api/foods", foodRouter);
 app.use("/api/users", userRouter);
+app.use("/api/orders",auth, orderRouter);
 
 
 
